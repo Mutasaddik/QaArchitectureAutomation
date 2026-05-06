@@ -1,0 +1,20 @@
+{
+  "queries": [
+    {
+      "id": "66e616fe",
+      "title": "Check weekly repayment records",
+      "sql": "SELECT * FROM loan_repayments WHERE frequency = 'weekly' ORDER BY created_at DESC;",
+      "module": "Loan",
+      "cr_id": "CR-2024-089",
+      "tables": "loan_repayments",
+      "purpose": "Validate weekly repayment records are created correctly",
+      "tags": [
+        "weekly",
+        "repayment",
+        "loan",
+        "frequency"
+      ],
+      "created_at": "2026-05-06T02:14:37.806486"
+    }
+  ]
+}

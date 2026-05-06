@@ -1,0 +1,111 @@
+
+QA ASSISTANT - GENERATED TEST PLAN
+====================================
+Generated At : 2026-05-06T02:04:08.722285
+Model Used   : llama3
+====================================
+
+CHANGE REQUEST:
+
+    CR-2024-089: Weekly Loan Repayment Support
+
+    Currently the system only supports monthly loan repayments.
+    This CR adds support for weekly repayment schedules.
+
+    Changes:
+    - Add 'weekly' option to repayment frequency dropdown
+    - Recalculate installment amount based on weekly schedule
+    - Update loan summary report to show weekly breakdown
+    - Notify borrower via SMS when weekly payment is due
+
+    Affected Modules: Loan Management, Reporting, Notifications
+    Priority: High
+    
+
+====================================
+GENERATED TEST PLAN:
+====================================
+**CR SUMMARY**
+
+* CR Title: Weekly Loan Repayment Support (CR-2024-089)
+* CR Description (summarized): Add support for weekly loan repayment schedules, including recalculation of installment amounts, updated loan summary reports, and SMS notifications for borrowers.
+* Impacted Modules: Loan Management, Reporting, Notifications
+* Business Logic Changes:
+	+ Recalculate installment amount based on weekly schedule
+	+ Update loan summary report to show weekly breakdown
+	+ Notify borrower via SMS when weekly payment is due
+* Dependencies & Integrations: None mentioned in the CR description
+
+**TEST STRATEGY**
+
+* Smoke Testing scope (what to verify first):
+	+ Verify that the "weekly" option is available in the repayment frequency dropdown
+	+ Confirm that the loan summary report shows a weekly breakdown
+* Sanity Testing scope (what to quickly validate):
+	+ Validate that the recalculation of installment amounts based on weekly schedule is correct
+	+ Verify that SMS notifications are sent to borrowers when weekly payments are due
+* End-to-End (E2E) Testing (Complete business lifecycle): Test the entire loan repayment process, including creating a new loan, setting up weekly repayments, and verifying the updated loan summary report.
+* Regression Testing scope (what existing features to re-test):
+	+ Re-test monthly loan repayment functionality to ensure it still works correctly
+	+ Verify that other loan-related features (e.g., loan disbursement, interest calculation) are unaffected by this change
+* Integration Testing scope (what integrations to verify): None mentioned in the CR description
+* UAT Scope (what business scenarios to validate):
+	+ Test various loan repayment scenarios with different frequencies (monthly and weekly)
+	+ Verify that borrowers receive accurate SMS notifications for their weekly payments
+
+**TEST SCOPE**
+
+* In Scope:
+	+ All features related to weekly loan repayments, including recalculation of installment amounts, updated loan summary reports, and SMS notifications
+	+ Verification of the entire loan repayment process, including creating a new loan, setting up weekly repayments, and verifying the updated loan summary report
+* Out of Scope:
+	+ Testing of existing features that are not directly impacted by this change (e.g., loan disbursement, interest calculation)
+	+ Integration testing with other systems or modules
+
+**RISK AREAS**
+
+* High Risk areas:
+	+ Incorrect recalculation of installment amounts based on weekly schedule
+	+ Failure to send SMS notifications for borrowers' weekly payments
+* Medium Risk areas:
+	+ Inconsistencies in loan summary reports showing weekly breakdowns
+	+ Potential issues with loan repayment processing due to the new frequency option
+* Low Risk areas: None identified
+
+**TEST ENVIRONMENT CONSIDERATIONS**
+
+* Required test data setup:
+	+ Create sample loans with different frequencies (monthly and weekly)
+	+ Set up borrowers' accounts for testing SMS notifications
+* Known QA environment issues to watch for: None mentioned in the knowledge base context
+* Preconditions before testing starts:
+	+ Ensure that all necessary test data is set up
+	+ Verify that the system is configured correctly for loan repayment processing
+
+**REQUIRED TEST DATA**
+
+* Specific data needed:
+	+ Sample loans with different frequencies (monthly and weekly)
+	+ Borrower accounts for testing SMS notifications
+* Edge case data needed:
+	+ Loans with unusual payment schedules or irregularities
+	+ Borrowers with multiple loans or complex repayment scenarios
+* Role/user accounts needed: None mentioned in the CR description
+
+**ENTRY & EXIT CRITERIA**
+
+* Entry criteria (when testing can START):
+	+ All necessary test data is set up
+	+ The system is configured correctly for loan repayment processing
+* Exit criteria (when testing is DONE):
+	+ All test cases have been executed and verified
+	+ No critical issues or defects were found during testing
+
+**ESTIMATED EFFORT**
+
+* Rough estimate of test cases count: 20-25 test cases
+* Suggested testing priority order:
+	1. Verify the "weekly" option in the repayment frequency dropdown
+	2. Test recalculation of installment amounts based on weekly schedule
+	3. Validate SMS notifications for borrowers' weekly payments
+	4. Test the entire loan repayment process, including creating a new loan and setting up weekly repayments

@@ -1,0 +1,255 @@
+
+QA ASSISTANT - GENERATED TEST CASES
+=====================================
+Generated At : 2026-05-06T02:17:29.232467
+Model Used   : llama3
+=====================================
+
+CHANGE REQUEST:
+
+    CR-2024-089: Weekly Loan Repayment Support
+    Add support for weekly repayment schedules.
+    - Add 'weekly' option to repayment frequency dropdown
+    - Recalculate installment amount based on weekly schedule
+    - Update loan summary report
+    - Notify borrower via SMS when weekly payment is due
+    Affected Modules: Loan Management, Reporting, Notifications
+    
+
+=====================================
+GENERATED TEST CASES:
+=====================================
+Here are the generated test cases for CR-2024-089:
+
+---
+TC-001: Weekly Repayment Option Available
+Module: Loan Management
+Type: Positive
+Priority: High
+
+Preconditions:
+- The user has a loan account with a valid weekly repayment schedule.
+
+Test Steps:
+1. Log in to the loan management module as a borrower.
+2. Navigate to the loan details page.
+3. Click on the "Repayment Frequency" dropdown and select "Weekly".
+4. Verify that the "Installment Amount" is recalculated based on the new frequency.
+
+Test Data:
+- Valid loan account with weekly repayment schedule
+
+Expected Result:
+- The "Weekly" option is available in the repayment frequency dropdown, and the installment amount is recalculated accordingly.
+
+Notes:
+- None
+
+---
+TC-002: Invalid Weekly Repayment Option
+Module: Loan Management
+Type: Negative
+Priority: High
+
+Preconditions:
+- The user has a loan account with an invalid weekly repayment schedule (e.g., negative value).
+
+Test Steps:
+1. Log in to the loan management module as a borrower.
+2. Navigate to the loan details page.
+3. Click on the "Repayment Frequency" dropdown and select an invalid value (e.g., "-Weekly").
+4. Verify that an error message is displayed.
+
+Test Data:
+- Invalid loan account with weekly repayment schedule
+
+Expected Result:
+- An error message is displayed indicating that the repayment frequency is invalid.
+
+Notes:
+- None
+
+---
+TC-003: Weekly Repayment Notification
+Module: Notifications
+Type: Positive
+Priority: High
+
+Preconditions:
+- The user has a loan account with a valid weekly repayment schedule, and the notification module is configured to send SMS notifications.
+
+Test Steps:
+1. Log in to the loan management module as a borrower.
+2. Navigate to the loan details page.
+3. Verify that an SMS notification is sent when the weekly payment is due.
+
+Test Data:
+- Valid loan account with weekly repayment schedule
+
+Expected Result:
+- An SMS notification is sent to the borrower's mobile number when the weekly payment is due.
+
+Notes:
+- None
+
+---
+TC-004: Loan Summary Report Update
+Module: Reporting
+Type: Positive
+Priority: Medium
+
+Preconditions:
+- The user has a loan account with a valid weekly repayment schedule, and the reporting module is configured to display loan summary reports.
+
+Test Steps:
+1. Log in to the reporting module as an administrator.
+2. Navigate to the loan summary report page.
+3. Verify that the report displays the updated installment amount based on the weekly repayment schedule.
+
+Test Data:
+- Valid loan account with weekly repayment schedule
+
+Expected Result:
+- The loan summary report displays the updated installment amount based on the weekly repayment schedule.
+
+Notes:
+- None
+
+---
+TC-005: Role-Based Access Control
+Module: Loan Management
+Type: Positive
+Priority: Medium
+
+Preconditions:
+- The user has a valid role (e.g., administrator, borrower) with access to the loan management module.
+
+Test Steps:
+1. Log in to the loan management module as an administrator.
+2. Navigate to the loan details page and verify that the "Weekly" repayment option is available.
+3. Log out and log back in as a borrower.
+4. Navigate to the loan details page and verify that the "Weekly" repayment option is not available.
+
+Test Data:
+- Valid role-based access control configuration
+
+Expected Result:
+- The administrator has access to the weekly repayment option, while the borrower does not.
+
+Notes:
+- None
+
+---
+TC-006: Edge Case - Zero Weekly Repayment
+Module: Loan Management
+Type: Edge Case
+Priority: Medium
+
+Preconditions:
+- The user has a loan account with a zero weekly repayment schedule.
+
+Test Steps:
+1. Log in to the loan management module as a borrower.
+2. Navigate to the loan details page and select "Zero" as the weekly repayment amount.
+3. Verify that the installment amount is recalculated accordingly.
+
+Test Data:
+- Zero weekly repayment schedule
+
+Expected Result:
+- The installment amount is recalculated based on the zero weekly repayment schedule.
+
+Notes:
+- None
+
+---
+TC-007: Integration with Loan Management
+Module: Loan Management
+Type: Positive
+Priority: High
+
+Preconditions:
+- The user has a loan account with a valid weekly repayment schedule, and the loan management module is integrated with the reporting module.
+
+Test Steps:
+1. Log in to the loan management module as an administrator.
+2. Navigate to the loan details page and verify that the installment amount is updated based on the weekly repayment schedule.
+3. Verify that the reporting module displays the updated installment amount accordingly.
+
+Test Data:
+- Valid loan account with weekly repayment schedule
+
+Expected Result:
+- The loan management module updates the installment amount, and the reporting module displays the updated information.
+
+Notes:
+- None
+
+---
+TC-008: Integration with Notifications
+Module: Notifications
+Type: Positive
+Priority: High
+
+Preconditions:
+- The user has a loan account with a valid weekly repayment schedule, and the notification module is integrated with the loan management module.
+
+Test Steps:
+1. Log in to the loan management module as an administrator.
+2. Navigate to the loan details page and verify that an SMS notification is sent when the weekly payment is due.
+3. Verify that the notification module sends the SMS notification accordingly.
+
+Test Data:
+- Valid loan account with weekly repayment schedule
+
+Expected Result:
+- The loan management module triggers the notification, and the notification module sends the SMS notification to the borrower's mobile number.
+
+Notes:
+- None
+
+---
+TC-009: Weekly Repayment Schedule Update
+Module: Loan Management
+Type: Positive
+Priority: High
+
+Preconditions:
+- The user has a loan account with an existing weekly repayment schedule, and the loan management module is configured to allow updates to the repayment schedule.
+
+Test Steps:
+1. Log in to the loan management module as a borrower.
+2. Navigate to the loan details page and update the weekly repayment schedule.
+3. Verify that the installment amount is recalculated based on the updated schedule.
+
+Test Data:
+- Valid loan account with existing weekly repayment schedule
+
+Expected Result:
+- The installment amount is recalculated based on the updated weekly repayment schedule.
+
+Notes:
+- None
+
+---
+TC-010: Weekly Repayment Schedule Deletion
+Module: Loan Management
+Type: Positive
+Priority: High
+
+Preconditions:
+- The user has a loan account with an existing weekly repayment schedule, and the loan management module is configured to allow deletion of the repayment schedule.
+
+Test Steps:
+1. Log in to the loan management module as a borrower.
+2. Navigate to the loan details page and delete the weekly repayment schedule.
+3. Verify that the installment amount is recalculated based on the new frequency (e.g., monthly).
+
+Test Data:
+- Valid loan account with existing weekly repayment schedule
+
+Expected Result:
+- The installment amount is recalculated based on the new frequency after deleting the weekly repayment schedule.
+
+Notes:
+- None
