@@ -102,5 +102,55 @@
     "role": "assistant",
     "content": "Based on the knowledge base content, \"Next Approver\" refers to the approver that will be selected if the proposed loan amount exceeds the Repeat Loan Approver Limit of the previous loan's approver.\n\nFor example, if the previous loan was approved by AAM/AM and the proposed amount exceeds the Repeat Loan Approver Limit of RM, then the next approver would be DM. Similarly, if the previous loan was approved by RM and the proposed amount is within the Repeat Loan Approver Limit of DM, then the next approver would still be DM.\n\nThe \"Next Approver\" is determined based on the role-wise approval limit configuration, where the system will follow the approver from Role Wise Approver Limit. This means that if the proposed loan amount exceeds the Repeat Loan Approver Limit of a particular approver, the system will move up to the next level in the hierarchy until it finds an approver whose limit is not exceeded.\n\nIn summary, \"Next Approver\" refers to the approver that will be selected based on the role-wise approval limit configuration if the proposed loan amount exceeds the Repeat Loan Approver Limit of the previous loan's approver.",
     "timestamp": "2026-05-06T19:07:34.751393"
+  },
+  {
+    "role": "user",
+    "content": "do you know about relationship CR?",
+    "timestamp": "2026-05-06T21:09:23.332923"
+  },
+  {
+    "role": "assistant",
+    "content": "I can help with that!\n\nThe Relationship CR refers to a set of requirements related to Repeat Loan Validation, specifically for General Loan Products under Progoti or ADP Projects.\n\nFrom what I gathered from the uploaded CR documents, here are some key points:\n\n1. **Repeat Loan Validation**: A new section will be added in the Loan Product Setup UI called \"Repeat Loan Validation\". This section will have a checkbox to select if the product follows Special Repeat Loan Approval Conditions.\n2. **Special Conditional Repeat Loan Approver**: When this checkbox is checked, the selected products (listed as General 24,22,20 % Reducing (Progoti) BD-10072 and others) will follow the Special Conditional Repeat Loan Approver.\n3. **Member Transfer**: When a member is transferred with an active loan, the loan will be transferred to the new branch, keeping track of the latest Disbursed Loan with Approver. For closed loans, the Member profile will keep track of the previous loan and apply the Repeat Loan Special Condition.\n\nThese requirements are specific to General Loan Products under Progoti or ADP Projects, so I hope that helps clarify things!",
+    "timestamp": "2026-05-06T21:09:23.333521"
+  },
+  {
+    "role": "user",
+    "content": "no insurer relationship restructuring",
+    "timestamp": "2026-05-06T21:10:31.990191"
+  },
+  {
+    "role": "assistant",
+    "content": "Based on the provided CR documents, there is no mention of \"insurer relationship restructuring\" in the context of Repeat Loan Validation for General Loan Products under Progoti or ADP Projects.\n\nHowever, I can provide information on the Repeat Loan Validation process:\n\nWhen a repeat loan proposal is submitted for approval, the system enforces two constraints before proceeding:\n\n1. **Repeat Loan Ceiling**: The requested amount must not exceed the dynamic ceiling (previous loan × (1 + ceiling%)).\n2. **Role-wise Approver Limit**: The approver's role-based limit must not be exceeded.\n\nIf either validation fails, the Post Validation API blocks the action and returns a standardized error response with a short validation text showing the maximum approvable amount and Next approver authority (who can approve this loan now) based on the failing rule (ERP Business configuration).\n\nAdditionally, the system checks for the presence of previous active or closed loans. If the member has no previous loan, ceiling validation is not applicable.\n\nPlease let me know if you have any further questions!",
+    "timestamp": "2026-05-06T21:10:31.991018"
+  },
+  {
+    "role": "user",
+    "content": "tell me how much SRS you have",
+    "timestamp": "2026-05-06T21:11:31.564084"
+  },
+  {
+    "role": "assistant",
+    "content": "I'm happy to help!\n\nBased on the provided CR documents, I can provide information on the Repeat Loan Validation process.\n\nTo answer your question, there is no mention of \"SRS\" (Specific Requirements Specification) in the context of Repeat Loan Validation for General Loan Products under Progoti or ADP Projects. The provided CR documents only discuss the rules and constraints related to Repeat Loan Ceiling and Role-wise Approver Limit.\n\nHowever, if you're asking about the number of SRS requirements, I can tell you that there are no specific SRS requirements mentioned in the uploaded CR documents.",
+    "timestamp": "2026-05-06T21:11:31.564667"
+  },
+  {
+    "role": "user",
+    "content": "tell me about relationship restructuring SRS, which JIRA ID:BBMFV2-6748",
+    "timestamp": "2026-05-06T21:17:06.896782"
+  },
+  {
+    "role": "assistant",
+    "content": "The Relationship Restructuring SRS with JIRA ID BBMFV2-6748 is a Change Request Document that aims to introduce relationship remapping between the 1st Insured and 2nd Insured within the DCS (Digital Customer Service) application.\n\nAccording to the document, the purpose of this change request is to ensure accurate representation of insured relationships for policy processing, compliance, and downstream system integrations used by BRAC (Bangladesh Rural Advancement Committee).\n\nThe objectives of this change request are:\n\n1. Enable relationship types & remapping between the 1st Insured and 2nd Insured in the DCS app.\n2. Implement Transgender option in the relation mapping.\n\nThe document also outlines the users who will be impacted by this change, which includes BRAC staff and customers who interact with the DCS application.\n\nAs for the SRS (Software Requirements Specification) document itself, it is a comprehensive document that provides detailed information about the requirements of the relationship restructuring feature. The document includes sections on purpose, objectives, scope, assumptions, and constraints, as well as a detailed description of the functional and non-functional requirements of the feature.\n\nIn terms of test cases, there are no specific test cases mentioned in the knowledge base content provided. However, based on the information provided, it can be inferred that the test cases would involve testing the relationship restructuring feature to ensure that it accurately maps relationships between the 1st Insured and 2nd Insured, including handling Transgender options.\n\nOverall, the Relationship Restructuring SRS with JIRA ID BBMFV2-6748 is a critical change request document that aims to improve the accuracy of insured relationships in the DCS application.",
+    "timestamp": "2026-05-06T21:17:06.897543"
+  },
+  {
+    "role": "user",
+    "content": "how many SRS files do you have",
+    "timestamp": "2026-05-06T21:39:37.508938"
+  },
+  {
+    "role": "assistant",
+    "content": "According to the uploaded documents, I can see that there are 2 SRS (Software Requirements Specification) files in total, which contain a total of 118 chunks of information.",
+    "timestamp": "2026-05-06T21:39:37.509942"
   }
 ]

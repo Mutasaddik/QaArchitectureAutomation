@@ -1,5 +1,3 @@
-# src/ui_theme.py
-
 CUSTOM_CSS = """
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
@@ -19,406 +17,133 @@ CUSTOM_CSS = """
     --text-secondary:#a8a49c;
     --text-muted:    #5c5852;
     --gradient-1: linear-gradient(135deg, #4f8ef7 0%, #38bdf8 100%);
-    --gradient-green: linear-gradient(135deg, #14b8a6, #22c55e);
-    --shadow-glow: 0 0 24px rgba(79,142,247,0.12);
     --radius-sm: 8px;
     --radius-md: 12px;
-    --radius-lg: 16px;
 }
 
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-html, body, .stApp {
-    background: var(--bg-primary) !important;
-    color: var(--text-primary) !important;
-    font-family: 'Inter', sans-serif !important;
-}
-
-#MainMenu, footer, header { visibility: hidden !important; }
-.stDeployButton { display: none !important; }
+*, *::before, *::after { box-sizing: border-box; }
 
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 2px; }
 
-/* ── Sidebar — no borders, floating clean nav ─── */
+/* ─── Sidebar ─────────────────────────────────────────────── */
 [data-testid="stSidebar"] {
-    background: var(--bg-secondary) !important;
-    border-right: none !important;
-    box-shadow: none !important;
+    background: linear-gradient(180deg, #0a1628 0%, #0d1f3c 100%) !important;
+    border-right: 2px solid rgba(220,50,100,0.5) !important;
+    box-shadow: 4px 0 20px rgba(0,0,0,0.5) !important;
 }
 
 [data-testid="stSidebarNav"] {
-    padding: 0.5rem 0.75rem !important;
+    padding: 0.75rem !important;
 }
 
 [data-testid="stSidebarNav"] a {
-    display: flex !important;
-    align-items: center !important;
     border-radius: 8px !important;
-    margin: 1px 0 !important;
-    padding: 9px 14px !important;
-    transition: all 0.15s ease !important;
-    color: var(--text-secondary) !important;
-    font-size: 0.85rem !important;
+    margin: 3px 4px !important;
+    padding: 10px 16px !important;
+    transition: all 0.2s ease !important;
+    color: rgba(255,255,255,0.75) !important;
+    font-size: 0.875rem !important;
     font-weight: 500 !important;
-    border: none !important;
+    border: 1px solid transparent !important;
     background: transparent !important;
-    letter-spacing: 0.01em !important;
 }
 
 [data-testid="stSidebarNav"] a:hover {
-    background: rgba(255,255,255,0.05) !important;
-    color: var(--text-primary) !important;
+    background: rgba(220,50,100,0.12) !important;
+    color: white !important;
+    border-color: rgba(220,50,100,0.35) !important;
+    transform: translateX(3px) !important;
 }
 
 [data-testid="stSidebarNav"] a[aria-selected="true"] {
-    background: rgba(79,142,247,0.1) !important;
-    color: var(--accent-cyan) !important;
-    border-left: 2px solid var(--accent-blue) !important;
+    background: linear-gradient(135deg, rgba(220,50,100,0.25), rgba(180,30,80,0.15)) !important;
+    color: white !important;
+    border-color: rgba(220,50,100,0.5) !important;
     font-weight: 600 !important;
+    box-shadow: 0 2px 12px rgba(220,50,100,0.2) !important;
 }
 
-/* ── Main content ────────────────────────────────── */
-.main .block-container {
-    padding: 2rem 3rem !important;
-    max-width: 1280px !important;
-}
-
-/* ── Typography ──────────────────────────────────── */
-h1 {
-    font-family: 'Inter', sans-serif !important;
-    font-size: 1.75rem !important;
-    font-weight: 700 !important;
-    color: var(--text-primary) !important;
-    letter-spacing: -0.03em !important;
-    -webkit-text-fill-color: var(--text-primary) !important;
-}
-
-h2 {
-    font-size: 1.1rem !important;
-    font-weight: 600 !important;
-    color: var(--text-primary) !important;
-    letter-spacing: -0.01em !important;
-}
-
-h3 {
-    font-size: 0.7rem !important;
-    font-weight: 600 !important;
-    color: var(--text-muted) !important;
-    text-transform: uppercase !important;
-    letter-spacing: 0.1em !important;
-}
-
-p, li { color: var(--text-secondary) !important; line-height: 1.65 !important; }
-
-code {
-    font-family: 'JetBrains Mono', monospace !important;
-    background: rgba(255,255,255,0.05) !important;
-    border: 1px solid var(--border) !important;
-    border-radius: 4px !important;
-    color: var(--accent-cyan) !important;
-    padding: 2px 6px !important;
-    font-size: 0.82em !important;
-}
-
-/* ── Buttons ─────────────────────────────────────── */
+/* ─── Default buttons — ghost 3D ──────────────────────────── */
 .stButton > button {
-    background: rgba(255,255,255,0.05) !important;
-    color: var(--text-secondary) !important;
-    border: 1px solid var(--border-bright) !important;
-    border-radius: var(--radius-sm) !important;
-    font-family: 'Inter', sans-serif !important;
+    background: rgba(255,255,255,0.03) !important;
+    color: var(--text-primary) !important;
+    border: 1px solid rgba(128,128,128,0.12) !important;
+    border-bottom: 2px solid rgba(0,0,0,0.18) !important;
+    border-radius: 7px !important;
+    font-family: Inter, sans-serif !important;
     font-weight: 500 !important;
-    font-size: 0.85rem !important;
-    padding: 0.5rem 1.2rem !important;
-    transition: all 0.15s ease !important;
+    font-size: 0.875rem !important;
+    transition: all 0.12s ease !important;
+    box-shadow:
+        0 1px 2px rgba(0,0,0,0.12),
+        inset 0 1px 0 rgba(255,255,255,0.05) !important;
 }
 
 .stButton > button:hover {
-    background: rgba(255,255,255,0.08) !important;
-    border-color: var(--border-bright) !important;
-    color: var(--text-primary) !important;
+    background: rgba(128,128,128,0.08) !important;
+    border-color: rgba(128,128,128,0.20) !important;
+    border-bottom-color: rgba(0,0,0,0.22) !important;
     transform: translateY(-1px) !important;
+    box-shadow:
+        0 3px 8px rgba(0,0,0,0.18),
+        inset 0 1px 0 rgba(255,255,255,0.07) !important;
 }
 
+.stButton > button:active {
+    transform: translateY(1px) !important;
+    box-shadow: none !important;
+    border-bottom-width: 1px !important;
+}
+
+/* ─── Primary buttons ─────────────────────────────────────── */
 .stButton > button[kind="primary"] {
-    background: var(--gradient-1) !important;
-    border: none !important;
-    color: white !important;
+    background: rgba(255,255,255,0.05) !important;
+    color: var(--text-primary) !important;
     font-weight: 600 !important;
-    box-shadow: 0 4px 16px rgba(79,142,247,0.25) !important;
+    border: 1px solid rgba(128,128,128,0.16) !important;
+    border-bottom: 2px solid rgba(0,0,0,0.22) !important;
+    box-shadow:
+        0 2px 5px rgba(0,0,0,0.15),
+        inset 0 1px 0 rgba(255,255,255,0.07) !important;
 }
 
 .stButton > button[kind="primary"]:hover {
-    transform: translateY(-2px) !important;
-    box-shadow: 0 6px 20px rgba(79,142,247,0.35) !important;
-    color: white !important;
+    background: rgba(128,128,128,0.09) !important;
+    border-bottom-color: rgba(0,0,0,0.28) !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.2) !important;
 }
 
-/* ── Inputs ──────────────────────────────────────── */
-.stTextInput > div > div > input,
-.stTextArea > div > div > textarea {
-    background: var(--bg-card) !important;
-    border: 1px solid var(--border-bright) !important;
-    border-radius: var(--radius-sm) !important;
-    color: var(--text-primary) !important;
-    font-family: 'Inter', sans-serif !important;
-    font-size: 0.875rem !important;
-    transition: border-color 0.15s ease, box-shadow 0.15s ease !important;
+.stButton > button[kind="primary"]:active {
+    transform: translateY(1px) !important;
+    border-bottom-width: 1px !important;
+    box-shadow: none !important;
 }
 
-.stTextInput > div > div > input:focus,
-.stTextArea > div > div > textarea:focus {
-    border-color: var(--accent-blue) !important;
-    box-shadow: 0 0 0 3px rgba(79,142,247,0.1) !important;
-    outline: none !important;
-}
-
-.stTextInput > div > div > input::placeholder,
-.stTextArea > div > div > textarea::placeholder {
-    color: var(--text-muted) !important;
-}
-
-/* ── Select ──────────────────────────────────────── */
-.stSelectbox > div > div {
-    background: var(--bg-card) !important;
-    border: 1px solid var(--border-bright) !important;
-    border-radius: var(--radius-sm) !important;
-    color: var(--text-primary) !important;
-}
-
-/* ── Metrics ─────────────────────────────────────── */
-[data-testid="metric-container"] {
-    background: var(--bg-card) !important;
-    border: 1px solid var(--border) !important;
-    border-radius: var(--radius-md) !important;
-    padding: 1.25rem 1.5rem !important;
-    transition: all 0.2s ease !important;
-}
-
-[data-testid="metric-container"]:hover {
-    border-color: var(--border-bright) !important;
-    box-shadow: var(--shadow-glow) !important;
-    transform: translateY(-2px) !important;
-}
-
-[data-testid="metric-container"] [data-testid="stMetricLabel"] {
-    color: var(--text-muted) !important;
-    font-size: 0.7rem !important;
-    text-transform: uppercase !important;
-    letter-spacing: 0.1em !important;
-    font-weight: 600 !important;
-}
-
-[data-testid="metric-container"] [data-testid="stMetricValue"] {
-    color: var(--text-primary) !important;
-    font-size: 2rem !important;
-    font-weight: 700 !important;
-    letter-spacing: -0.03em !important;
-}
-
-[data-testid="metric-container"] [data-testid="stMetricDelta"] {
-    color: var(--accent-green) !important;
-    font-size: 0.78rem !important;
-}
-
-/* ── Expanders ───────────────────────────────────── */
-.streamlit-expanderHeader {
-    background: var(--bg-card) !important;
-    border: 1px solid var(--border) !important;
-    border-radius: var(--radius-sm) !important;
-    color: var(--text-secondary) !important;
-    font-weight: 500 !important;
-    font-size: 0.85rem !important;
-    padding: 0.75rem 1rem !important;
-    transition: all 0.15s ease !important;
-}
-
-.streamlit-expanderHeader:hover {
-    background: var(--bg-hover) !important;
-    color: var(--text-primary) !important;
-    border-color: var(--border-bright) !important;
-}
-
-.streamlit-expanderContent {
-    background: var(--bg-card) !important;
-    border: 1px solid var(--border) !important;
-    border-top: none !important;
-    border-radius: 0 0 var(--radius-sm) var(--radius-sm) !important;
-    padding: 1rem !important;
-}
-
-/* ── Tabs ────────────────────────────────────────── */
-.stTabs [data-baseweb="tab-list"] {
-    background: var(--bg-card) !important;
-    border-radius: var(--radius-sm) !important;
-    padding: 3px !important;
-    gap: 2px !important;
-    border: 1px solid var(--border) !important;
-}
-
-.stTabs [data-baseweb="tab"] {
-    background: transparent !important;
-    color: var(--text-muted) !important;
-    border-radius: 6px !important;
-    font-weight: 500 !important;
-    font-size: 0.85rem !important;
-    padding: 6px 16px !important;
-    transition: all 0.15s ease !important;
-    border: none !important;
-}
-
-.stTabs [data-baseweb="tab"]:hover {
-    color: var(--text-primary) !important;
-    background: rgba(255,255,255,0.05) !important;
-}
-
-.stTabs [aria-selected="true"] {
-    background: rgba(79,142,247,0.15) !important;
-    color: var(--accent-cyan) !important;
-    font-weight: 600 !important;
-}
-
-/* ── Alerts ──────────────────────────────────────── */
-.stSuccess {
-    background: rgba(20,184,166,0.08) !important;
-    border: 1px solid rgba(20,184,166,0.2) !important;
-    border-radius: var(--radius-sm) !important;
-    color: var(--accent-teal) !important;
-}
-
-.stWarning {
-    background: rgba(245,158,11,0.08) !important;
-    border: 1px solid rgba(245,158,11,0.2) !important;
-    border-radius: var(--radius-sm) !important;
-}
-
-.stError {
-    background: rgba(239,68,68,0.08) !important;
-    border: 1px solid rgba(239,68,68,0.2) !important;
-    border-radius: var(--radius-sm) !important;
-}
-
-.stInfo {
-    background: rgba(79,142,247,0.06) !important;
-    border: 1px solid rgba(79,142,247,0.15) !important;
-    border-radius: var(--radius-sm) !important;
-    color: var(--accent-blue) !important;
-}
-
-/* ── Dataframe ───────────────────────────────────── */
-.stDataFrame {
-    border: 1px solid var(--border) !important;
-    border-radius: var(--radius-md) !important;
-    overflow: hidden !important;
-}
-
-.stDataFrame thead th {
-    background: var(--bg-hover) !important;
-    color: var(--text-muted) !important;
-    font-size: 0.7rem !important;
-    text-transform: uppercase !important;
-    letter-spacing: 0.1em !important;
-    font-weight: 600 !important;
-    padding: 10px 16px !important;
-    border-bottom: 1px solid var(--border) !important;
-}
-
-.stDataFrame tbody tr { border-bottom: 1px solid var(--border) !important; }
-.stDataFrame tbody tr:hover { background: var(--bg-hover) !important; }
-.stDataFrame tbody td { color: var(--text-secondary) !important; font-size: 0.85rem !important; padding: 9px 16px !important; }
-
-/* ── File uploader ───────────────────────────────── */
-[data-testid="stFileUploader"] {
-    background: var(--bg-card) !important;
-    border: 1px dashed var(--border-bright) !important;
-    border-radius: var(--radius-md) !important;
-    padding: 1.5rem !important;
-    transition: all 0.15s ease !important;
-}
-
-[data-testid="stFileUploader"]:hover {
-    border-color: var(--accent-blue) !important;
-    background: rgba(79,142,247,0.04) !important;
-}
-
-/* ── Chat messages ───────────────────────────────── */
-[data-testid="stChatMessage"] {
-    background: var(--bg-card) !important;
-    border: 1px solid var(--border) !important;
-    border-radius: var(--radius-md) !important;
-    padding: 1rem 1.25rem !important;
-    margin-bottom: 0.625rem !important;
-}
-
-[data-testid="stChatMessage"]:has([data-testid="stChatMessageAvatarUser"]) {
-    background: rgba(79,142,247,0.04) !important;
-    border-color: rgba(79,142,247,0.15) !important;
-}
-
-[data-testid="stChatInput"] {
-    background: var(--bg-card) !important;
-    border: 1px solid var(--border-bright) !important;
-    border-radius: var(--radius-md) !important;
-}
-
-[data-testid="stChatInput"]:focus-within {
-    border-color: var(--accent-blue) !important;
-    box-shadow: 0 0 0 3px rgba(79,142,247,0.08) !important;
-}
-
-/* ── Divider ─────────────────────────────────────── */
-hr {
-    border: none !important;
-    border-top: 1px solid var(--border) !important;
-    margin: 1.5rem 0 !important;
-}
-
-.stCaption { color: var(--text-muted) !important; font-size: 0.78rem !important; }
-
-/* ── Slider ──────────────────────────────────────── */
-.stSlider > div > div > div > div { background: var(--gradient-1) !important; }
-
-/* ── Radio ───────────────────────────────────────── */
-.stRadio > div { gap: 6px !important; }
-.stRadio > div > label {
-    background: var(--bg-card) !important;
-    border: 1px solid var(--border-bright) !important;
-    border-radius: var(--radius-sm) !important;
-    padding: 7px 14px !important;
-    cursor: pointer !important;
-    transition: all 0.15s ease !important;
-    color: var(--text-secondary) !important;
-    font-size: 0.85rem !important;
-}
-.stRadio > div > label:hover {
-    border-color: var(--accent-blue) !important;
-    color: var(--text-primary) !important;
-}
-
-/* ── Custom components ───────────────────────────── */
+/* ─── Cards ───────────────────────────────────────────────── */
 .qa-card {
     background: var(--bg-card);
     border: 1px solid var(--border);
     border-radius: var(--radius-md);
     padding: 1.5rem;
     transition: all 0.2s ease;
-    cursor: pointer;
 }
-
 .qa-card:hover {
     border-color: var(--border-bright);
     transform: translateY(-2px);
     box-shadow: 0 8px 32px rgba(0,0,0,0.3);
 }
 
+/* ─── Page header ─────────────────────────────────────────── */
 .qa-page-header {
     padding: 0.5rem 0 1.75rem 0;
     border-bottom: 1px solid var(--border);
     margin-bottom: 2rem;
 }
 
+/* ─── Badges ──────────────────────────────────────────────── */
 .qa-badge {
     display: inline-flex;
     align-items: center;
@@ -426,65 +151,109 @@ hr {
     border-radius: 100px;
     font-size: 0.72rem;
     font-weight: 600;
-    letter-spacing: 0.04em;
 }
-
-.qa-badge-blue   { background: rgba(79,142,247,0.12); color: #7eb3fa; }
-.qa-badge-green  { background: rgba(34,197,94,0.12);  color: #4ade80; }
-.qa-badge-orange { background: rgba(245,158,11,0.12); color: #fbbf24; }
-.qa-badge-teal   { background: rgba(20,184,166,0.12); color: #2dd4bf; }
-
-/* ── Hide "app" / filename label in sidebar ──────── */
-[data-testid="stSidebarNav"]::before {
-    content: "🧪 QA Assistant";
-    display: block;
-    padding: 1.5rem 1rem 0.5rem 1rem;
-    font-size: 1rem;
-    font-weight: 700;
-    color: #f0ece3;
-    letter-spacing: -0.02em;
-}
-
-/* Hide the default app name shown at top */
-[data-testid="stSidebarNav"] li:first-child {
-    display: none !important;
-}
-
-/* Hide Deploy button */
-.stDeployButton, [data-testid="stToolbar"] {
-    display: none !important;
-}
-
-/* Hide top padding gap */
-[data-testid="stSidebar"] > div > div > div > div:first-child {
-    padding-top: 0 !important;
-}
-
-/* Make Home link bigger and styled */
-[data-testid="stSidebarNav"] a[href="/"] {
-    font-size: 1rem !important;
-    font-weight: 700 !important;
-    color: var(--text-primary) !important;
-    padding: 12px 14px !important;
-}
+.qa-badge-blue  { background: rgba(79,142,247,0.12);  color: #7eb3fa; }
+.qa-badge-green { background: rgba(34,197,94,0.12);   color: #4ade80; }
+.qa-badge-teal  { background: rgba(20,184,166,0.12);  color: #2dd4bf; }
+.qa-badge-red   { background: rgba(220,50,100,0.12);  color: #f472b6; }
+.qa-badge-amber { background: rgba(245,158,11,0.12);  color: #fbbf24; }
 </style>
 """
 
 
 def inject_theme():
+    """Call once at the top of every page to apply global styles."""
     import streamlit as st
     st.markdown(CUSTOM_CSS, unsafe_allow_html=True)
 
 
 def page_header(title: str, subtitle: str = "", icon: str = ""):
+    """Renders a styled page header with optional icon and subtitle."""
     import streamlit as st
     st.markdown(f"""
     <div class="qa-page-header">
-        <h1>{icon} {title}</h1>
-        {f'<p style="color:var(--text-muted);margin-top:6px;font-size:0.875rem;">{subtitle}</p>' if subtitle else ''}
+        <h1 style="margin:0; color:var(--text-primary); font-family:Inter,sans-serif; font-size:1.6rem; font-weight:700;">
+            {icon} {title}
+        </h1>
+        {f'<p style="color:var(--text-muted);margin-top:6px;font-size:0.875rem;font-family:Inter,sans-serif;">{subtitle}</p>' if subtitle else ''}
     </div>
     """, unsafe_allow_html=True)
 
 
 def status_badge(text: str, color: str = "blue") -> str:
+    """Returns an HTML badge string. Use inside st.markdown(..., unsafe_allow_html=True)."""
     return f'<span class="qa-badge qa-badge-{color}">{text}</span>'
+
+
+def active_button(label: str, key: str = None, use_container_width: bool = False) -> bool:
+    """
+    Renders a green 'active' styled button.
+
+    Works by injecting an invisible sibling div directly before the button,
+    then using CSS adjacent-sibling selector (+) to style it — the most
+    reliable way to target a specific Streamlit button without custom class support.
+
+    Usage:
+        if active_button("✓ Run Tests", key="run_tests"):
+            st.success("Running!")
+    """
+    import streamlit as st
+    import hashlib
+
+    btn_key = key or label.lower().replace(" ", "_").replace("✓", "check")
+    uid = hashlib.md5(btn_key.encode()).hexdigest()[:8]
+
+    st.markdown(f"""
+    <style>
+    .abtn-anchor-{uid} + div button,
+    .abtn-anchor-{uid} + div + div button {{
+        background: linear-gradient(180deg, #22c55e 0%, #16a34a 100%) !important;
+        color: #ffffff !important;
+        font-weight: 600 !important;
+        font-family: Inter, sans-serif !important;
+        font-size: 0.875rem !important;
+        border: 1px solid rgba(22,163,74,0.5) !important;
+        border-bottom: 2px solid rgba(10,90,40,0.45) !important;
+        border-radius: 7px !important;
+        transition: all 0.12s ease !important;
+        box-shadow:
+            0 2px 8px rgba(22,163,74,0.25),
+            inset 0 1px 0 rgba(255,255,255,0.18) !important;
+    }}
+    .abtn-anchor-{uid} + div button:hover,
+    .abtn-anchor-{uid} + div + div button:hover {{
+        background: linear-gradient(180deg, #4ade80 0%, #22c55e 100%) !important;
+        border-bottom-color: rgba(10,90,40,0.55) !important;
+        transform: translateY(-1px) !important;
+        box-shadow:
+            0 4px 14px rgba(22,163,74,0.35),
+            inset 0 1px 0 rgba(255,255,255,0.22) !important;
+        color: #ffffff !important;
+    }}
+    .abtn-anchor-{uid} + div button:active,
+    .abtn-anchor-{uid} + div + div button:active {{
+        background: linear-gradient(180deg, #16a34a 0%, #15803d 100%) !important;
+        transform: translateY(1px) !important;
+        border-bottom-width: 1px !important;
+        box-shadow: 0 1px 3px rgba(22,163,74,0.2) !important;
+    }}
+    </style>
+    <div class="abtn-anchor-{uid}" style="display:none;"></div>
+    """, unsafe_allow_html=True)
+
+    return st.button(label, key=btn_key, use_container_width=use_container_width)
+
+
+def card(content_fn, extra_class: str = ""):
+    """
+    Wraps a content function in a styled .qa-card div.
+
+    Usage:
+        def my_content():
+            st.write("Hello inside card")
+        card(my_content)
+    """
+    import streamlit as st
+    st.markdown(f'<div class="qa-card {extra_class}">', unsafe_allow_html=True)
+    content_fn()
+    st.markdown('</div>', unsafe_allow_html=True)

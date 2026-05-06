@@ -104,14 +104,55 @@ st.markdown("""
 # ── Knowledge Base Stats ──────────────────────────
 st.markdown('<p style="color:#5c5852;font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:1rem;">📚 KNOWLEDGE BASE</p>', unsafe_allow_html=True)
 
-col1, col2, col3, col4, col5 = st.columns(5)
-with col1: st.metric("Change Requests",  cr_count,    "uploaded CRs")
-with col2: st.metric("SRS Documents",    srs_count,   "uploaded SRS")
-with col3: st.metric("Test Cases",       tc_count,    "indexed cases")
-with col4: st.metric("QA Issues",        qi_count,    "known issues")
-with col5: st.metric("SQL Queries",      query_count, "saved queries")
+# Get file counts
+try:
+    cr_files  = len(list(Path("knowledge_base/crs").glob("*.pdf")))
+    srs_files = len(list(Path("knowledge_base/srs").glob("*.pdf")))
+    tc_files  = len(list(Path("knowledge_base/test_cases").glob("*.pdf"))) + len(list(Path("knowledge_base/test_cases").glob("*.xlsx"))) + len(list(Path("knowledge_base/test_cases").glob("*.xls")))
+    qi_files  = len(list(Path("knowledge_base/qa_issues").glob("*.pdf")))
+except:
+    cr_files = srs_files = tc_files = qi_files = 0
 
-st.markdown("<div style='margin:1.5rem 0;border-top:1px solid rgba(255,255,255,0.06);'></div>", unsafe_allow_html=True)
+st.markdown(f"""
+<div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-md);overflow:hidden;margin-bottom:1.5rem;">
+    <table style="width:100%;border-collapse:collapse;font-size:0.875rem;">
+        <thead>
+            <tr style="background:var(--bg-hover);border-bottom:1px solid var(--border);">
+                <th style="padding:10px 16px;text-align:left;color:var(--text-muted);font-size:0.7rem;text-transform:uppercase;letter-spacing:0.08em;font-weight:600;">Collection</th>
+                <th style="padding:10px 16px;text-align:center;color:var(--text-muted);font-size:0.7rem;text-transform:uppercase;letter-spacing:0.08em;font-weight:600;">Files Imported</th>
+                <th style="padding:10px 16px;text-align:center;color:var(--text-muted);font-size:0.7rem;text-transform:uppercase;letter-spacing:0.08em;font-weight:600;">Chunks</th>
+                <th style="padding:10px 16px;text-align:left;color:var(--text-muted);font-size:0.7rem;text-transform:uppercase;letter-spacing:0.08em;font-weight:600;">What it contains</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr style="border-bottom:1px solid var(--border);">
+                <td style="padding:12px 16px;color:var(--text-primary);font-weight:500;">📄 SRS Documents</td>
+                <td style="padding:12px 16px;text-align:center;color:var(--accent-blue);font-weight:600;">{srs_files} SRS files</td>
+                <td style="padding:12px 16px;text-align:center;color:var(--text-primary);font-weight:600;">{srs_count}</td>
+                <td style="padding:12px 16px;color:var(--text-secondary);">Software requirements specifications & functional specs</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--border);">
+                <td style="padding:12px 16px;color:var(--text-primary);font-weight:500;">🧪 Test Cases</td>
+                <td style="padding:12px 16px;text-align:center;color:var(--accent-blue);font-weight:600;">{tc_files} Excel files</td>
+                <td style="padding:12px 16px;text-align:center;color:var(--text-primary);font-weight:600;">{tc_count}</td>
+                <td style="padding:12px 16px;color:var(--text-secondary);">Reference test plans & existing test case documents</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--border);">
+                <td style="padding:12px 16px;color:var(--text-primary);font-weight:500;">⚠️ QA Issues</td>
+                <td style="padding:12px 16px;text-align:center;color:var(--accent-blue);font-weight:600;">{qi_files} files</td>
+                <td style="padding:12px 16px;text-align:center;color:var(--text-primary);font-weight:600;">{qi_count}</td>
+                <td style="padding:12px 16px;color:var(--text-secondary);">Known QA environment issues — infra, ES sync, DB issues</td>
+            </tr>
+            <tr>
+                <td style="padding:12px 16px;color:var(--text-primary);font-weight:500;">💬 SQL Queries</td>
+                <td style="padding:12px 16px;text-align:center;color:var(--accent-blue);font-weight:600;">—</td>
+                <td style="padding:12px 16px;text-align:center;color:var(--text-primary);font-weight:600;">{query_count}</td>
+                <td style="padding:12px 16px;color:var(--text-secondary);">Saved SQL validation queries for testing</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+""", unsafe_allow_html=True)
 
 # ── Feedback Stats ────────────────────────────────
 st.markdown('<p style="color:#5c5852;font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:1rem;">⭐ FEEDBACK & QUALITY</p>', unsafe_allow_html=True)

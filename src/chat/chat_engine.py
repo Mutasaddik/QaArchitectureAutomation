@@ -2,6 +2,7 @@ from datetime import datetime
 from typing import List, Dict, Optional
 from loguru import logger
 
+
 import config
 from src.retrieval.context_builder import build_context_string
 from src.generation.prompts import QA_SYSTEM_PROMPT, build_chat_prompt

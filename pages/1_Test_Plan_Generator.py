@@ -3,7 +3,7 @@ from pathlib import Path
 import sys, tempfile, time
 from datetime import datetime
 sys.path.insert(0, str(Path(__file__).parent.parent))
-from src.ui_theme import inject_theme
+from src.ui_theme import inject_theme, active_button  # line 6 only, delete line 8
 inject_theme()
 
 from src.generation.background_runner import run_test_plan_in_background, get_job

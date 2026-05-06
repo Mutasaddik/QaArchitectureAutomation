@@ -10,7 +10,8 @@ inject_theme()
 
 from src.ingestion.pdf_loader import extract_text_from_pdf
 from src.generation.llm_client import generate
-from src.vectorstore.embedder import search_collection
+from src.vectorstore.embedder import search_all_collections
+from src.vectorstore.chroma_manager import get_collection_stats
 import config
 
 CHAT_HISTORY_FILE = Path("knowledge_base/feedback/global_chat_history.json")
@@ -50,14 +51,12 @@ with st.sidebar:
 
 with st.expander("📎 Attach Context — CR / SRS / Any File", expanded=not bool(st.session_state["cr_content"])):
     tab1, tab2 = st.tabs(["📝 Paste Text", "📄 Upload PDF"])
-
     with tab1:
         pasted = st.text_area("Paste CR or SRS here", height=150,
             placeholder="Paste your CR description here...")
         if st.button("✅ Set as Context"):
             st.session_state["cr_content"] = pasted
             st.success("Context set!")
-
     with tab2:
         uploaded = st.file_uploader("Upload PDF", type=["pdf"])
         if uploaded:
@@ -75,7 +74,7 @@ with st.expander("📎 Attach Context — CR / SRS / Any File", expanded=not boo
                     st.success("Context set from PDF!")
 
 if st.session_state["cr_content"]:
-    st.caption(f"📎 Context set: _{st.session_state['cr_content'][:100].replace(chr(10),' ')}..._")
+    st.caption(f"📎 Context: _{st.session_state['cr_content'][:100].replace(chr(10),' ')}..._")
 
 st.subheader("💬 Conversation")
 
@@ -89,13 +88,24 @@ if user_input:
     with st.chat_message("user"):
         st.markdown(user_input)
 
-    # Search ChromaDB directly
-    kb_results = search_collection(user_input, config.COLLECTION_CRS, n_results=5)
+    # Search ALL collections
+    all_results = search_all_collections(user_input, n_results_each=3)
     kb_text = ""
-    for r in kb_results:
-        kb_text += f"\n---\n{r['content']}\n"
+    for collection, results in all_results.items():
+        for r in results:
+            kb_text += f"\n[{collection}]\n{r['content']}\n---"
 
-    # Build simple direct prompt
+    # Add system stats
+    stats = get_collection_stats()
+    system_info = f"""
+SYSTEM KNOWLEDGE BASE STATS:
+- Change Requests: {stats.get(config.COLLECTION_CRS, 0)} chunks from {len(list(Path('knowledge_base/crs').glob('*.pdf')))} files
+- SRS Documents: {stats.get(config.COLLECTION_SRS, 0)} chunks from {len(list(Path('knowledge_base/srs').glob('*.pdf')))} files
+- Test Cases: {stats.get(config.COLLECTION_TEST_CASES, 0)} chunks from {len(list(Path('knowledge_base/test_cases').glob('*.pdf')))} files
+- QA Issues: {stats.get(config.COLLECTION_QA_ISSUES, 0)} chunks from {len(list(Path('knowledge_base/qa_issues').glob('*.pdf')))} files
+"""
+    kb_text = system_info + "\n\n" + kb_text
+
     cr_ctx = st.session_state["cr_content"] or "Not provided"
     history_text = ""
     for m in st.session_state["messages"][-6:]:
@@ -104,7 +114,7 @@ if user_input:
 
     prompt = f"""You are a QA Assistant. Answer the question using the knowledge base content below.
 
-KNOWLEDGE BASE CONTENT FROM UPLOADED CR DOCUMENTS:
+KNOWLEDGE BASE CONTENT FROM UPLOADED DOCUMENTS:
 {kb_text if kb_text else "No results found"}
 
 CR CONTEXT PROVIDED BY USER:
