@@ -433,6 +433,40 @@ hr {
 .qa-badge-green  { background: rgba(34,197,94,0.12);  color: #4ade80; }
 .qa-badge-orange { background: rgba(245,158,11,0.12); color: #fbbf24; }
 .qa-badge-teal   { background: rgba(20,184,166,0.12); color: #2dd4bf; }
+
+/* ── Hide "app" / filename label in sidebar ──────── */
+[data-testid="stSidebarNav"]::before {
+    content: "🧪 QA Assistant";
+    display: block;
+    padding: 1.5rem 1rem 0.5rem 1rem;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #f0ece3;
+    letter-spacing: -0.02em;
+}
+
+/* Hide the default app name shown at top */
+[data-testid="stSidebarNav"] li:first-child {
+    display: none !important;
+}
+
+/* Hide Deploy button */
+.stDeployButton, [data-testid="stToolbar"] {
+    display: none !important;
+}
+
+/* Hide top padding gap */
+[data-testid="stSidebar"] > div > div > div > div:first-child {
+    padding-top: 0 !important;
+}
+
+/* Make Home link bigger and styled */
+[data-testid="stSidebarNav"] a[href="/"] {
+    font-size: 1rem !important;
+    font-weight: 700 !important;
+    color: var(--text-primary) !important;
+    padding: 12px 14px !important;
+}
 </style>
 """
 
